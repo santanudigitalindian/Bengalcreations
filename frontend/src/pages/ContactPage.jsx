@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import { MapPin, Mail, Phone, Clock } from 'lucide-react'
 import { PageHero } from '../components/ui/index.jsx'
 import EnquiryForm from '../components/forms/EnquiryForm'
-import ContactImg from 'https://res.cloudinary.com/dfikzvebd/image/upload/v1777100349/digital-indian/ostesyrz2vfcu44nj4m7.jpg'
+import ContactImg from '../assates/contact.png'
 
 export default function ContactPage() {
   const locations = [
