@@ -18,6 +18,10 @@ export default function ContactPage() {
       city: 'Bhubaneswar',
       address: 'Duplex No.-9 Benupur, Balianta\nBhubaneswar – 752101, Odisha, India',
     },
+    {
+      city: 'Navi Mumbai',
+      address: '1730 The Empire Tower,  B-Wing, 17th Floor,Reliable Tech Park,\nAiroli, Navi Mumbai 400708 Maharashtra, India',
+    }
   ]
 
   const contactInfo = [
