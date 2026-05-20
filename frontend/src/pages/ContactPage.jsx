@@ -7,11 +7,11 @@ import ContactImg from '../assates/contact.png'
 export default function ContactPage() {
   const locations = [
     {
-      city: 'West Bengal',
+      city: 'Kolkata',
       address: 'Digital Indian EN-9, Sector V, Salt Lake\nKolkata – 700091, West Bengal',
     },
     {
-      city: 'Karnataka',
+      city: 'Bengaluru',
       address: 'Survey No. 22/1, Belathur Main Road, Kadugodi\nBengaluru – 560067, Karnataka',
     },
     {
@@ -23,7 +23,7 @@ export default function ContactPage() {
       address: '219,EVN street,\n Mettur Road,ERODE-638011, Tamil Nadu',
     },
     {
-      city: 'Maharashtra',
+      city: 'Mumbai',
       address: '1730 The Empire Tower,  B-Wing, 17th Floor,Reliable Tech Park,\nAiroli, Navi Mumbai 400708 Maharashtra, India',
     },
 
