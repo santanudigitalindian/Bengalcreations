@@ -19,13 +19,14 @@ export default function ContactPage() {
       address: 'Duplex No.-9 Benupur, Balianta\nBhubaneswar – 752101, Odisha, India',
     },
     {
-      city: 'Maharashtra',
-      address: '1730 The Empire Tower,  B-Wing, 17th Floor,Reliable Tech Park,\nAiroli, Navi Mumbai 400708 Maharashtra, India',
-    },
-    {
       city: 'Tamil Nadu',
       address: '219,EVN street,\n Mettur Road,ERODE-638011, Tamil Nadu',
     },
+    {
+      city: 'Maharashtra',
+      address: '1730 The Empire Tower,  B-Wing, 17th Floor,Reliable Tech Park,\nAiroli, Navi Mumbai 400708 Maharashtra, India',
+    },
+
     {
       city: 'Assam',
       address: ' North Bongaigaon ,Bongaigaon - 783380, Assam, India'
