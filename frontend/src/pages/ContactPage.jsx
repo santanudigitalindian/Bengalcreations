@@ -142,7 +142,9 @@ export default function ContactPage() {
 
               
             </div>
-            <div className="rounded-xl overflow-hidden border border-slate-200 h-64">
+           
+          </div>
+           <div className="rounded-xl overflow-hidden border border-slate-200 h-64">
                 <iframe
                   title="Location"
                   width="100%"
@@ -152,7 +154,6 @@ export default function ContactPage() {
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.0!2d88.4274!3d22.5726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sSalt+Lake+Sector+V%2C+Kolkata!5e0!3m2!1sen!2sin!4v1"
                 />
               </div>
-          </div>
         </div>
       </section>
     </>
