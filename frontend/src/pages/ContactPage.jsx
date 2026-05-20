@@ -25,17 +25,17 @@ export default function ContactPage() {
                 {[
                   {
                     icon: MapPin,
-                    label: 'Office',
+                    label: 'Kolkata Address',
                     val: 'Digital Indian EN-9,\nSector V, Salt Lake\nKolkata – 700091, West Bengal'
                   },
                   {
                     icon: MapPin,
-                    label: 'Office',
+                    label: 'Bengaluru Address',
                     val: 'Survey No. 22/1,\n Belathur Main Road, Kadugodi,\nBengaluru - 560067, Karnataka '
                   },
                   {
                     icon: MapPin,
-                    label: 'Office',
+                    label: 'Bhubaneswar Address',
                     val: 'Duplex No.-9 Benupur,\n Balianta, Balianta -752101,\n ODISHA  India'
                   },
                   {
