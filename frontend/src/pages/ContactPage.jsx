@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async'
 import { MapPin, Mail, Phone, Clock } from 'lucide-react'
 import { PageHero } from '../components/ui/index.jsx'
 import EnquiryForm from '../components/forms/EnquiryForm'
-import ContactImg from '../assates/contact.png'
+import ContactImg from 'https://res.cloudinary.com/dfikzvebd/image/upload/v1777100349/digital-indian/ostesyrz2vfcu44nj4m7.jpg'
 
 export default function ContactPage() {
   const locations = [
@@ -26,7 +26,11 @@ export default function ContactPage() {
       city: 'Erode',
       address: '219,EVN street,\n Mettur Road,ERODE-638011, Tamil Nadu',
     },
-    
+    {
+      city: 'Bongaigaon',
+      address: ' North Bongaigaon ,Bongaigaon - 783380, Assam, India'
+
+    },
   ]
 
   const contactInfo = [
