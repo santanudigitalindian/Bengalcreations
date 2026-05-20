@@ -23,7 +23,7 @@ export default function ContactPage() {
       address: '1730 The Empire Tower,  B-Wing, 17th Floor,Reliable Tech Park,\nAiroli, Navi Mumbai 400708 Maharashtra, India',
     },
     {
-      city: 'ERODE',
+      city: 'Erode',
       address: '219,EVN street,\n Mettur Road,ERODE-638011, Tamil Nadu',
     },
     
