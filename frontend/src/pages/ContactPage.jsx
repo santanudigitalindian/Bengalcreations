@@ -7,27 +7,27 @@ import ContactImg from '../assates/contact.png'
 export default function ContactPage() {
   const locations = [
     {
-      city: 'Kolkata',
+      city: 'West Bengal',
       address: 'Digital Indian EN-9, Sector V, Salt Lake\nKolkata – 700091, West Bengal',
     },
     {
-      city: 'Bengaluru',
+      city: 'Karnataka',
       address: 'Survey No. 22/1, Belathur Main Road, Kadugodi\nBengaluru – 560067, Karnataka',
     },
     {
-      city: 'Bhubaneswar',
+      city: 'Odisha',
       address: 'Duplex No.-9 Benupur, Balianta\nBhubaneswar – 752101, Odisha, India',
     },
     {
-      city: 'Navi Mumbai',
+      city: 'Maharashtra',
       address: '1730 The Empire Tower,  B-Wing, 17th Floor,Reliable Tech Park,\nAiroli, Navi Mumbai 400708 Maharashtra, India',
     },
     {
-      city: 'Erode',
+      city: 'Tamil Nadu',
       address: '219,EVN street,\n Mettur Road,ERODE-638011, Tamil Nadu',
     },
     {
-      city: 'Bongaigaon',
+      city: 'Assam',
       address: ' North Bongaigaon ,Bongaigaon - 783380, Assam, India'
 
     },
