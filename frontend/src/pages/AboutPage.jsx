@@ -22,6 +22,11 @@ import Manager from "../assates/manager.png"
 import ITENG from '../assates/ITENG.png'
 import CTO from '../assates/cto.png'
 import BusinessHead from '../assates/BUS.png'
+import ChiefArchitect from '../assates/Chiefarchitect.png'
+import Trainer from '../assates/tranner.png'
+import Susmita from '../assates/susmita.png'
+import Piu from '../assates/piu.png'
+import Suvo from '../assates/suvo.png'
 
 const team = [
   {
@@ -49,11 +54,44 @@ const team = [
     bio: "Specialist in full-stack development, Web GIS platforms, and high-performance system integration.",
   },
   {
-  name: "J",
-  role: "Head of Global Operations",
-  img: BusinessHead,
-  bio: "Leads global operations, strategic partnerships, and cross-regional execution, ensuring efficient delivery and scalable growth across GIS and IT services.",
-}
+    name: "J",
+    role: "Head of Global Operations",
+    img: BusinessHead,
+    bio: "Leads global operations, strategic partnerships, and cross-regional execution, ensuring efficient delivery and scalable growth across GIS and IT services.",
+  },
+];
+
+const projectTeam = [
+  {
+    name: "Prasenjit",
+    role: "Project Management Team",
+    img: ChiefArchitect,
+    bio: "Leads project management, technical planning, resource allocation, and timely execution across enterprise GIS and IT projects.",
+  },
+  {
+    name: "Pradip",
+    role: "IT Engineer",
+    img: Trainer,
+    bio: "Specializes in software development, Web GIS implementation, system integration, and IT technical support.",
+  },
+  {
+    name: "Suvasree",
+    role: "GIS Team Manager",
+    img: Suvo,
+    bio: "Manages GIS project operations, spatial data analysis, mapping workflows, and team execution.",
+  },
+  {
+    name: "Piu",
+    role: "BPS Incharge",
+    img: Piu,
+    bio: "Oversees business process services operations, team management, and project execution quality.",
+  },
+  {
+    name: "Susmita",
+    role: "BPS Executive",
+    img: Susmita,
+    bio: "Manages business process services, operational support, client relations, and service delivery workflows.",
+  },
 ];
 
 const testimonials = [
@@ -454,49 +492,92 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-     <section className="py-20 bg-white">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6">
-    <SectionHeader
-      label="Leadership"
-      title=""
-    />
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <SectionHeader
+            label="Leadership team"
+            title=""
+          />
 
-    <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
-      {team.map(({ name, role, bio, img }) => (
-        <div
-          key={name}
-          className="group relative rounded-xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300"
-        >
-          {/* IMAGE / AVATAR */}
-          {img ? (
-            <img
-              src={img}
-              alt={name}
-              className="w-60 h-48 object-cover group-hover:scale-110 transition duration-500"
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
+            {team.map(({ name, role, bio, img }) => (
+              <div
+                key={role}
+                className="group relative rounded-xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300"
+              >
+                {/* IMAGE / AVATAR */}
+                {img ? (
+                  <img
+                    src={img}
+                    alt={role}
+                    className="w-full h-48 object-cover group-hover:scale-110 transition duration-500"
+                  />
+                ) : (
+                  <div className="w-full h-48 flex items-center justify-center bg-brand-500 text-white text-4xl font-bold">
+                    {name.charAt(0)}
+                  </div>
+                )}
+
+                {/* OVERLAY (HOVER) */}
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-center items-center text-center px-4">
+                  <h3 className="text-white font-semibold text-lg mb-1">
+                    {name}
+                  </h3>
+                  <p className="text-brand-300 text-xs font-semibold mb-2">
+                    {role}
+                  </p>
+                  <p className="text-white/80 text-xs leading-relaxed">
+                    {bio}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Separate Row: Leads Project Management */}
+          <div className="mt-12">
+            <SectionHeader
+              label="Project management team"
+              title=""
             />
-          ) : (
-            <div className="w-60 h-48 flex items-center justify-center bg-brand-500 text-white text-4xl font-bold">
-              {name.charAt(0)}
-            </div>
-          )}
 
-          {/* OVERLAY (HOVER) */}
-          <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-center items-center text-center px-4">
-            <h3 className="text-white font-semibold text-lg mb-1">
-              {name}
-            </h3>
-            <p className="text-brand-300 text-xs font-semibold mb-2">
-              {role}
-            </p>
-            <p className="text-white/80 text-xs leading-relaxed">
-              {bio}
-            </p>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
+              {projectTeam.map(({ name, role, bio, img }) => (
+                <div
+                  key={role}
+                  className="group relative rounded-xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300"
+                >
+                  {/* IMAGE / AVATAR */}
+                  {img ? (
+                    <img
+                      src={img}
+                      alt={role}
+                      className="w-full h-48 object-cover group-hover:scale-110 transition duration-500"
+                    />
+                  ) : (
+                    <div className="w-full h-48 flex items-center justify-center bg-brand-500 text-white text-4xl font-bold">
+                      {name.charAt(0)}
+                    </div>
+                  )}
+
+                  {/* OVERLAY (HOVER) */}
+                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-center items-center text-center px-4">
+                    <h3 className="text-white font-semibold text-lg mb-1">
+                      {name}
+                    </h3>
+                    <p className="text-brand-300 text-xs font-semibold mb-2">
+                      {role}
+                    </p>
+                    <p className="text-white/80 text-xs leading-relaxed">
+                      {bio}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      ))}
-    </div>
-  </div>
-</section>
+      </section>
 
       {/* Leadership */}
       {/* <section className="py-2 md:py-2 bg-white">
