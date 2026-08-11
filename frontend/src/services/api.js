@@ -1,7 +1,16 @@
 import axios from 'axios'
 
+const getBaseURL = () => {
+  let envUrl = import.meta.env.VITE_API_URL || 'https://bengalcreations-wv2b.vercel.app/api';
+  envUrl = envUrl.trim().replace(/\/+$/, '');
+  if (!envUrl.endsWith('/api')) {
+    envUrl += '/api';
+  }
+  return envUrl;
+};
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: getBaseURL(),
   timeout: 15000,
 })
 
