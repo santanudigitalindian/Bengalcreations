@@ -119,7 +119,7 @@ export function CTABanner({
 export function ServiceCard({ service }) {
   return (
     <Link to={`/services/${service.slug}`} className="card group  flex flex-col h-full">
-      
+
       <div className="w-full h-48 overflow-hidden">
         <img
           src={service.icon}
@@ -196,10 +196,10 @@ export function ProjectCard({ project }) {
 export function BlogCard({ blog }) {
   const date = blog.publishedAt
     ? new Date(blog.publishedAt).toLocaleDateString("en-IN", {
-        day: "numeric",
-        month: "short",
-        year: "numeric",
-      })
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    })
     : "";
   return (
     <Link
