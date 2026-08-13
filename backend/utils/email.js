@@ -1,15 +1,20 @@
 const nodemailer = require('nodemailer');
 
 const createTransporter = () => {
+  const pass = (process.env.EMAIL_PASS || '').replace(/\s+/g, '');
   return nodemailer.createTransport({
-    host: process.env.EMAIL_HOST,
+    host: process.env.EMAIL_HOST || 'smtp.gmail.com',
     port: parseInt(process.env.EMAIL_PORT) || 587,
     secure: false,
     auth: {
       user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS
+      pass: pass
     }
   });
+};
+
+const getAdminEmail = () => {
+  return process.env.ADMIN_EMAIL || process.env.EMAIL_USER || 'it.digitalindian@gmail.com';
 };
 
 // ─── Send Enquiry Admin Notification ─────────────────────────────────────────
@@ -20,7 +25,7 @@ const sendEnquiryToAdmin = async (enquiry, aiInsights) => {
 
   await transporter.sendMail({
     from: `"Digital Indian Website" <${process.env.EMAIL_USER}>`,
-    to: process.env.ADMIN_EMAIL,
+    to: getAdminEmail(),
     subject: `🔔 New Enquiry: ${enquiry.subject} [${priority.toUpperCase()}]`,
     html: `
       <div style="font-family: 'Segoe UI', sans-serif; max-width: 600px; margin: 0 auto; background: #f8fafc; padding: 20px;">
@@ -98,22 +103,51 @@ const sendEnquiryAcknowledgement = async (enquiry, suggestedReply) => {
 // ─── Send Job Application Notifications ──────────────────────────────────────
 const sendApplicationToAdmin = async (application, jobTitle) => {
   const transporter = createTransporter();
-  await transporter.sendMail({
+
+  // Format file extension for attachment
+  let filename = `${(application.name || 'Applicant').replace(/[^a-zA-Z0-9]/g, '_')}_CV.pdf`;
+  if (application.resumeUrl) {
+    const cleanUrl = application.resumeUrl.split('?')[0];
+    const extMatch = cleanUrl.match(/\.([a-zA-Z0-9]+)$/);
+    if (extMatch && extMatch[1]) {
+      filename = `${(application.name || 'Applicant').replace(/[^a-zA-Z0-9]/g, '_')}_CV.${extMatch[1]}`;
+    }
+  }
+
+  const mailOptions = {
     from: `"Digital Indian Careers" <${process.env.EMAIL_USER}>`,
-    to: process.env.ADMIN_EMAIL,
-    subject: `📝 New Application: ${jobTitle} — ${application.name}`,
+    to: getAdminEmail(),
+    subject: `📝 New Job Application: ${jobTitle} — ${application.name}`,
     html: `
-      <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-        <h2 style="color: #0f172a;">New Job Application</h2>
-        <p><strong>Position:</strong> ${jobTitle}</p>
-        <p><strong>Applicant:</strong> ${application.name}</p>
-        <p><strong>Email:</strong> <a href="mailto:${application.email}">${application.email}</a></p>
-        <p><strong>Phone:</strong> ${application.phone || '—'}</p>
-        <p><strong>Resume:</strong> <a href="${application.resumeUrl}" target="_blank">Download Resume</a></p>
-        ${application.coverLetter ? `<p><strong>Cover Letter:</strong><br>${application.coverLetter}</p>` : ''}
+      <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 650px; margin: 0 auto; background: #f8fafc; padding: 20px;">
+        <div style="background: #0f172a; padding: 24px; border-radius: 8px 8px 0 0;">
+          <h1 style="color: #38bdf8; margin: 0; font-size: 20px;">Digital Indian Careers — New Application</h1>
+        </div>
+        <div style="background: white; padding: 24px; border-radius: 0 0 8px 8px; border: 1px solid #e2e8f0;">
+          <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+            <tr><td style="padding: 8px; color: #64748b; width: 140px;">Position</td><td style="padding: 8px; font-weight: 700; color: #0f172a;">${jobTitle}</td></tr>
+            <tr style="background: #f8fafc;"><td style="padding: 8px; color: #64748b;">Applicant Name</td><td style="padding: 8px; font-weight: 600;">${application.name}</td></tr>
+            <tr><td style="padding: 8px; color: #64748b;">Email Address</td><td style="padding: 8px;"><a href="mailto:${application.email}">${application.email}</a></td></tr>
+            <tr style="background: #f8fafc;"><td style="padding: 8px; color: #64748b;">Phone Number</td><td style="padding: 8px;">${application.phone || '—'}</td></tr>
+            <tr><td style="padding: 8px; color: #64748b;">CV / Resume</td><td style="padding: 8px;"><a href="${application.resumeUrl}" target="_blank" style="color: #0284c7; font-weight: 600;">📄 Download CV Online</a> (Also Attached)</td></tr>
+          </table>
+
+          <div style="margin-top: 20px; padding: 16px; background: #f1f5f9; border-radius: 6px;">
+            <p style="margin: 0 0 8px; color: #475569; font-size: 13px; font-weight: 600; text-transform: uppercase;">Applicant Message / Cover Letter</p>
+            <p style="margin: 0; color: #1e293b; white-space: pre-wrap;">${application.coverLetter || 'No cover letter provided.'}</p>
+          </div>
+        </div>
       </div>
-    `
-  });
+    `,
+    attachments: application.resumeUrl ? [
+      {
+        filename: filename,
+        path: application.resumeUrl
+      }
+    ] : []
+  };
+
+  await transporter.sendMail(mailOptions);
 };
 
 const sendApplicationAcknowledgement = async (application, jobTitle) => {

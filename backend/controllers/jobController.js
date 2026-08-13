@@ -47,15 +47,19 @@ exports.applyToJob = async (req, res) => {
       jobTitle: job.title
     });
 
-    // Send notifications (non-blocking)
-    try {
-      await Promise.all([
-        sendApplicationToAdmin(application, job.title),
-        sendApplicationAcknowledgement(application, job.title)
-      ]);
-    } catch (emailError) {
-      console.error('Email error (non-critical):', emailError.message);
-    }
+    // Send notifications (non-blocking, handled safely)
+    Promise.allSettled([
+      sendApplicationToAdmin(application, job.title),
+      sendApplicationAcknowledgement(application, job.title)
+    ]).then((results) => {
+      results.forEach((res, index) => {
+        if (res.status === 'rejected') {
+          console.error(`Job application email [${index === 0 ? 'Admin' : 'Applicant'}] failed:`, res.reason?.message || res.reason);
+        } else {
+          console.log(`Job application email [${index === 0 ? 'Admin' : 'Applicant'}] sent successfully.`);
+        }
+      });
+    });
 
     res.status(201).json({
       success: true,
