@@ -1,8 +1,12 @@
 import axios from 'axios'
 
 const getBaseURL = () => {
-  let envUrl = import.meta.env.VITE_API_URL || 'https://bengalcreations-wv2b.vercel.app/api';
+  let envUrl = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:5000/api' : 'https://bengalcreations-wv2b.vercel.app/api');
   envUrl = envUrl.trim().replace(/\/+$/, '');
+  // Local servers run HTTP on localhost; force http to prevent ERR_SSL_PROTOCOL_ERROR
+  if (envUrl.includes('localhost') || envUrl.includes('127.0.0.1')) {
+    envUrl = envUrl.replace(/^https:/i, 'http:');
+  }
   if (!envUrl.endsWith('/api')) {
     envUrl += '/api';
   }
