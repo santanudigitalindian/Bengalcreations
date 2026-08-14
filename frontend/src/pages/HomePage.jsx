@@ -35,6 +35,8 @@ import EnquiryForm from "../components/forms/EnquiryForm";
 
 import HeroIT from "../assates/hero-it.png";
 import HeroGIS from "../assates/hero-gis.png";
+import BPOImg from "../assates/bpo.png";
+import Slider2Img from "../assates/slider2.jpeg";
 // Partner logos
 import Accenture from "../assates/Accenture.png";
 import Amazon from "../assates/Amazon.png";
@@ -269,28 +271,34 @@ const heroSlides = [
   {
     id: 1,
     image: HeroIT,
-    // badge: "Digital Transformation & Software Engineering",
     title: "Smart IT Solutions",
     highlight: "For Modern Businesses.",
     description:
       "We build scalable software platforms, cloud-enabled systems, enterprise applications, and AI-powered digital products that accelerate growth.",
-    // primaryBtn: "Request a Demo",
-    // secondaryBtn: "View Projects",
-    // primaryLink: "/contact",
-    // secondaryLink: "/projects",
   },
   {
     id: 2,
     image: HeroGIS,
-    // badge: "Geospatial Intelligence & Mapping Solutions",
     title: "Advanced GIS & Geospatial Solutions",
     highlight: "For Modern India.",
     description:
       "Digital Indian helps government, utilities, infrastructure, and enterprise teams turn spatial data into decisions using GIS, remote sensing, Web GIS, and geospatial analytics.",
-    // primaryBtn: "Explore Services",
-    // secondaryBtn: "Contact Us",
-    // primaryLink: "/services",
-    // secondaryLink: "/contact",
+  },
+  {
+    id: 3,
+    image: BPOImg,
+    title: "BPO & ITES Solutions",
+    highlight: "Driving Operational Excellence.",
+    description:
+      "Comprehensive business process outsourcing, customer support, data management, and operational workflows tailored to scale your enterprise efficiently.",
+  },
+  {
+    id: 4,
+    image: Slider2Img,
+    title: "Innovative Digital Transformation",
+    highlight: "Empowering Next-Gen Enterprises.",
+    description:
+      "End-to-end digital solutions, cloud integration, and enterprise consulting to transform your business operations for the modern digital era.",
   },
 ];
 
@@ -354,41 +362,40 @@ export default function HomePage() {
       </Helmet>
 
       {/* HERO CAROUSEL */}
-      <section className="relative pt-24 pb-2 md:pb-2 min-h-[520px] flex items-center overflow-hidden">
+      <section className="relative pt-24 pb-12 md:pb-16 min-h-[540px] flex items-center overflow-hidden bg-slate-900">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeSlide.id}
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{
-              backgroundImage: `url(${activeSlide.image})`,
-            }}
-            initial={{ opacity: 0, scale: 1.06 }}
+            className="absolute inset-0"
+            initial={{ opacity: 0, scale: 1.04 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.03 }}
-            transition={{ duration: 1.2, ease: "easeInOut" }}
-          />
+            exit={{ opacity: 0, scale: 1.02 }}
+            transition={{ duration: 1.0, ease: "easeInOut" }}
+          >
+            <img
+              src={activeSlide.image}
+              alt={activeSlide.title}
+              className="w-full h-full object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/30 z-[1]" />
+          </motion.div>
         </AnimatePresence>
-
-        {/* Overlay */}
-        {/* Overlay */}
-        <div className="absolute inset-0 z-[1] bg-black/30" />
-        <div className="absolute inset-0 z-[1] bg-gradient-to-r " />
 
         {/* Arrows */}
         <button
           onClick={prevSlide}
-          className="absolute left-4 md:left-6 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20    transition hover:bg-gray-700"
+          className="absolute left-3 md:left-6 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/40 backdrop-blur-md transition hover:bg-black/70"
           aria-label="Previous slide"
         >
-          <ChevronLeft className="h-5 w-5 text-slate-100 " />
+          <ChevronLeft className="h-5 w-5 text-white" />
         </button>
 
         <button
           onClick={nextSlide}
-          className="absolute right-4 md:right-6 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20  transition hover:bg-gray-700"
+          className="absolute right-3 md:left-auto md:right-6 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/40 backdrop-blur-md transition hover:bg-black/70"
           aria-label="Next slide"
         >
-          <ChevronRight className="h-5 w-5 text-slate-100" />
+          <ChevronRight className="h-5 w-5 text-white" />
         </button>
 
         <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6">
@@ -401,10 +408,6 @@ export default function HomePage() {
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.55 }}
               >
-                {/* <span className="mb-5 inline-block rounded-full border border-white/20 bg-white/10 px-3 py-1 text-sm font-bold uppercase tracking-widest text-white backdrop-blur-md">
-                  {activeSlide.badge}
-                </span> */}
-
                 <h1 className="mb-5 font-display text-4xl md:text-5xl font-bold leading-tight text-white drop-shadow-lg">
                   {activeSlide.title}
                   <br />
@@ -414,22 +417,6 @@ export default function HomePage() {
                 <p className="mb-8 max-w-xl text-lg leading-relaxed text-white drop-shadow-[0_3px_12px_rgba(0,0,0,0.6)]">
                   {activeSlide.description}
                 </p>
-
-                {/* <div className="mb-10 flex flex-wrap gap-3">
-                  <Link
-                    to={activeSlide.primaryLink}
-                    className="btn-primary px-7 py-3"
-                  >
-                    {activeSlide.primaryBtn} <ArrowRight className="h-4 w-4" />
-                  </Link>
-
-                  <Link
-                    to={activeSlide.secondaryLink}
-                    className="rounded-xl border border-white/30 bg-white/10 px-7 py-3 text-white transition hover:bg-white/20"
-                  >
-                    {activeSlide.secondaryBtn}
-                  </Link>
-                </div> */}
 
                 <div className="grid grid-cols-2 gap-6 border-t border-white/20 pt-8 sm:grid-cols-4">
                   {stats.map(({ val, suf, label }) => (
@@ -446,21 +433,22 @@ export default function HomePage() {
 
             <div className="hidden lg:block" />
           </div>
+        </div>
 
-          {/* Dots */}
-          <div className="mt-10 flex items-center justify-center gap-3">
-            {heroSlides.map((slide, index) => (
-              <button
-                key={slide.id}
-                onClick={() => goToSlide(index)}
-                className={`h-3 rounded-full transition-all duration-300 ${currentSlide === index
-                  ? "w-10 bg-white"
+        {/* Dots */}
+        <div className="absolute bottom-5 left-0 right-0 z-20 flex items-center justify-center gap-3">
+          {heroSlides.map((slide, index) => (
+            <button
+              key={slide.id}
+              onClick={() => goToSlide(index)}
+              className={`h-3 rounded-full transition-all duration-300 ${
+                currentSlide === index
+                  ? "w-10 bg-teal-400"
                   : "w-3 bg-white/40 hover:bg-white/70"
-                  }`}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
-          </div>
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
         </div>
       </section>
 
